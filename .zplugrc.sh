@@ -5,7 +5,6 @@ source ~/.zplug/init.zsh
 zplug "zsh-users/zsh-autosuggestions"
 zplug "zsh-users/zsh-completions"
 zplug "zsh-users/zsh-syntax-highlighting"
-#zplug "jeffreytse/zsh-vi-mode"
 zplug "themes/robbyrussell", as:theme, from:oh-my-zsh
 zplug "tom-doerr/zsh_codex"
 zplug "plugins/dirhistory", from:oh-my-zsh
@@ -20,6 +19,12 @@ zplug "aperezdc/zsh-fzy"
 
 # Tryingi vim mode again
 zplug "jeffreytse/zsh-vi-mode"
+
+# Fixes some weirdness of navegation
+bindkey  "^[[H"   beginning-of-line
+bindkey  "^[[F"   end-of-line
+bindkey  "^[[3~"  delete-char
+
 zvm_config() {
   # Retrieve default cursor styles
   local blink=$(zvm_cursor_style $ZVM_CURSOR_BLINKING_BLOCK)
@@ -47,10 +52,8 @@ bindkey '^[y' create_completion  # bind Option+y to suggest
 
 # Install plugins if there are plugins that have not been installed
 if ! zplug check --verbose; then
-    printf "Install? [y/N]: "
-    if read -q; then
-        echo; zplug install
-    fi
+    echo "Installing zplug plugins..."
+    zplug install
 fi
 
 # Then, source plugins and add commands to $PATH
