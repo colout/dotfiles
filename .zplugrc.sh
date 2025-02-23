@@ -20,10 +20,14 @@ zplug "aperezdc/zsh-fzy"
 # Tryingi vim mode again
 zplug "jeffreytse/zsh-vi-mode"
 
-# Fixes some weirdness of navegation
+# Fixes some weirdness of navegation (might not need anymore?)
 bindkey  "^[[H"   beginning-of-line
 bindkey  "^[[F"   end-of-line
 bindkey  "^[[3~"  delete-char
+
+# Need these since sometimes ssh or arch doesn't get the right terminal stuff with tmux on host
+bindkey  "^[[1~"   beginning-of-line
+bindkey  "^[[4~"   end-of-line
 
 zvm_config() {
   # Retrieve default cursor styles
